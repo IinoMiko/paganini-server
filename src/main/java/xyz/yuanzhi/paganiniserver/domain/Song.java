@@ -19,6 +19,8 @@ public class Song {
     @Column(name = "name")
     private String name;
 
+    private Integer singerId;
+
     @Column(name = "introduction")
     private String introduction;
 

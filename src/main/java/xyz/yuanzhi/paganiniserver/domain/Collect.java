@@ -1,5 +1,6 @@
 package xyz.yuanzhi.paganiniserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,6 +20,8 @@ public class Collect {
     @Column(name = "collect_id")
     private Integer collectId;
 
+    private String name;
+
     @Column(name = "user_id")
     private Integer userId;
 
@@ -34,7 +37,10 @@ public class Collect {
     @Column(name = "style")
     private String style;
 
+    private String introduction;
+
     @Transient
+    @JsonIgnore
     private List<Song> songs;
 
 }

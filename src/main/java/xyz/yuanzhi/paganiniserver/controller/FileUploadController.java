@@ -29,8 +29,7 @@ public class FileUploadController {
         String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf("."));
         try {
             uploadFile.transferTo(new File(folder, newName));
-            String filePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-                    + "/uploadFile/" + format + newName;
+            String filePath = "/uploadFile/" + format + newName;
             return filePath;
          } catch (IOException e) {
             e.printStackTrace();

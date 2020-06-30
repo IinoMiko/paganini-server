@@ -32,7 +32,7 @@ public class SongController {
     @GetMapping(value = "search/name={name}")
     public String searchSong(@PathVariable String name){
         Message message = new Message();
-        List<Song> songs = songService.searchSongsByString(name);
+        List<Song> songs = songService.searchSongsByString("%" + name + "%");
         message.addSuccessMsg("搜索成功");
         message.setObject(songs);
         return message.toJson();
