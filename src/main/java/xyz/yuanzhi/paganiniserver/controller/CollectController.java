@@ -3,12 +3,15 @@ package xyz.yuanzhi.paganiniserver.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.yuanzhi.paganiniserver.domain.Collect;
+import xyz.yuanzhi.paganiniserver.domain.Song;
 import xyz.yuanzhi.paganiniserver.domain.SongList;
 import xyz.yuanzhi.paganiniserver.service.CollectServiceImpl;
 import xyz.yuanzhi.paganiniserver.service.SongListServiceImpl;
 import xyz.yuanzhi.paganiniserver.service.SongServiceImpl;
 import xyz.yuanzhi.paganiniserver.util.Message;
 
+import java.awt.event.FocusEvent;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,17 +37,21 @@ public class CollectController {
         return message.toJson();
     }
 
-    @GetMapping(value = "collectId={collectId}")
-    public String getSongsByCollectId(@PathVariable Integer collectId){
-        Message message = new Message();
-        message.addSuccessMsg("获取成功");
-        message.setObject(songListService.getSongsByCollectId(collectId));
-        return message.toJson();
-    }
 
     @PostMapping(value = "addCollect")
     public String addUserCollect(@RequestBody Collect collect){
         collect.setType(Collect.USER_LIST); //设置为用户歌单
+        collect.setCreateTime(new Date());
+        Collect newCollect = collectService.addCollect(collect);
+        Message message = new Message();
+        message.addMessage(newCollect != null, "成功添加", "添加失败");
+        message.setObject(newCollect);
+        return message.toJson();
+    }
+
+    @PostMapping(value = "addSystemList")
+    public String addSystemList(@RequestBody Collect collect){
+        collect.setType(Collect.SYSTEM_LIST); //设置为系统歌单
         collect.setCreateTime(new Date());
         Collect newCollect = collectService.addCollect(collect);
         Message message = new Message();
@@ -91,6 +98,19 @@ public class CollectController {
         collectService.deleteByCollectId(collectId);
         Message message = new Message();
         message.addSuccessMsg("删除成功");
+        return message.toJson();
+    }
+
+    @GetMapping(value = "getSongs/collectId={collectId}")
+    public String getAllSongs(@PathVariable Integer collectId){
+        List<Integer> songIds = songListService.getAllByCollectId(collectId);
+        List<Song> songs = new ArrayList<>();
+        for (Integer songId : songIds) {
+            songs.add(songService.getSongById(songId));
+        }
+        Message message = new Message();
+        message.addSuccessMsg("获取成功");
+        message.setObject(songs);
         return message.toJson();
     }
 

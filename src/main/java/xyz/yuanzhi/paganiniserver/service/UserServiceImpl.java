@@ -32,4 +32,8 @@ public class UserServiceImpl {
     public User addUser(User user){
         return repository.save(user);
     }
+
+    public void deleteAllByUserId(Integer userId){
+        repository.deleteAllByUserId(userId);
+    }
 }

@@ -17,4 +17,6 @@ public interface SongListRepository extends JpaRepository<SongList, Integer> {
 //    @Query(nativeQuery = true, value = "SELECT * FROM song WHERE song_id " +
 //            "IN (SELECT song_id FROM song_list WHERE collect_id = :collectId)")
 //    List<Object> getSongsByCollectId(Integer collectId);
+
+    List<SongList> getAllByCollectId(Integer collectId);
 }

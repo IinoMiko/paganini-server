@@ -64,4 +64,12 @@ public class UserController {
         message.addSuccessMsg("修改成功");
         return message.toJson();
     }
+
+    @DeleteMapping(value = "userId={userId}")
+    public String deleteUser(@PathVariable Integer userId){
+        userService.deleteAllByUserId(userId);
+        Message message = new Message();
+        message.addSuccessMsg("删除成功");
+        return message.toJson();
+    }
 }

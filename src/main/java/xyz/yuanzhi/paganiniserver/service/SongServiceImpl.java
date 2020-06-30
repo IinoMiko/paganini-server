@@ -29,4 +29,8 @@ public class SongServiceImpl {
         return repository.save(song);
     }
 
+    public void deleteAllBySongId(Integer songId){
+        repository.deleteAllBySongId(songId);
+    }
+
 }

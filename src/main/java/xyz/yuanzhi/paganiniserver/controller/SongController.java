@@ -52,4 +52,20 @@ public class SongController {
         return message.toJson();
     }
 
+    @PutMapping(value = "modify")
+    public String modify(@RequestBody Song song){
+        Message message = new Message();
+        Song result = songService.addOrModifySong(song);
+        message.addMessage(result != null, "修改成功", "修改失败");
+        return message.toJson();
+    }
+
+    @DeleteMapping(value = "songId={songId}")
+    public String deleteSong(@PathVariable Integer songId){
+        Message message = new Message();
+        songService.deleteAllBySongId(songId);
+        message.addSuccessMsg("删除成功");
+        return message.toJson();
+    }
+
 }
