@@ -2,14 +2,13 @@ package xyz.yuanzhi.paganiniserver.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
+@Table(name = "collect")
 public class Collect {
 
     public static final Integer SYSTEM_LIST = 0; //系统歌单
@@ -17,16 +16,25 @@ public class Collect {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "collect_id")
     private Integer collectId;
 
+    @Column(name = "user_id")
     private Integer userId;
 
+    @Column(name = "type")
     private Integer type;
 
+    @Column(name = "create_time")
     private Date createTime;
 
+    @Column(name = "pic")
     private String pic;
 
+    @Column(name = "style")
     private String style;
+
+    @Transient
+    private List<Song> songs;
 
 }

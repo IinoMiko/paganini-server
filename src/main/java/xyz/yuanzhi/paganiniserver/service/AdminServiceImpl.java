@@ -11,6 +11,6 @@ public class AdminServiceImpl {
     private AdminRepository repository;
 
     public Boolean searchAdmin(String name, String password){
-        return repository.findAllByNameAndPassword(name, password).size() > 0;
+        return repository.existsByNameAndPassword(name, password);
     }
 }

@@ -13,17 +13,20 @@ public class SongServiceImpl {
     @Autowired
     private SongRepository repository;
 
-    public Long countBySongId(Integer songId){
-        return repository.countBySongId(songId);
+    public Boolean existsBySongId(Integer songId){
+        return repository.existsBySongId(songId);
     }
 
     public Song getSongById(Integer songId){
-        List<Song> songs = repository.findAllBySongId(songId);
-        return songs.isEmpty() ? null : songs.get(0);
+        return repository.findFirstBySongId(songId);
     }
 
     public List<Song> searchSongsByString(String name){
         return repository.findAllByNameLike(name);
+    }
+
+    public Song addOrModifySong(Song song){
+        return repository.save(song);
     }
 
 }

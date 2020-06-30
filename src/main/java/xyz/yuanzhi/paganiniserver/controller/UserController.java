@@ -1,13 +1,9 @@
 package xyz.yuanzhi.paganiniserver.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.yuanzhi.paganiniserver.domain.User;
 import xyz.yuanzhi.paganiniserver.service.UserServiceImpl;
-import xyz.yuanzhi.paganiniserver.util.JacksonUtil;
 import xyz.yuanzhi.paganiniserver.util.Message;
 
 @RestController

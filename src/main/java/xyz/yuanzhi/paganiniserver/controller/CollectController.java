@@ -34,6 +34,14 @@ public class CollectController {
         return message.toJson();
     }
 
+    @GetMapping(value = "collectId={collectId}")
+    public String getSongsByCollectId(@PathVariable Integer collectId){
+        Message message = new Message();
+        message.addSuccessMsg("获取成功");
+        message.setObject(songListService.getSongsByCollectId(collectId));
+        return message.toJson();
+    }
+
     @PostMapping(value = "addCollect")
     public String addUserCollect(@RequestBody Collect collect){
         collect.setType(Collect.USER_LIST); //设置为用户歌单
@@ -48,7 +56,7 @@ public class CollectController {
     @PostMapping(value = "addSong/collectId={collectId}&songId={songId}")
     public String addSongToCollect(@PathVariable Integer collectId, @PathVariable Integer songId){
         Message message = new Message();
-        if(collectService.countByCollectId(collectId) > 0 && songService.countBySongId(songId) > 0){
+        if(collectService.existsByCollectId(collectId) && songService.existsBySongId(songId)){
             songListService.addSongToCollect(new SongList(collectId, songId));
             message.addSuccessMsg("成功添加歌曲");
         } else {
@@ -69,8 +77,8 @@ public class CollectController {
     @DeleteMapping(value = "deleteSong/collectId={collectId}&songId={songId}")
     public String removeSongFromCollect(@PathVariable Integer collectId, @PathVariable Integer songId){
         Message message = new Message();
-        if(collectService.countByCollectId(collectId) > 0 && songService.countBySongId(songId) > 0){
-            songListService.addSongToCollect(new SongList(collectId, songId));
+        if(collectService.existsByCollectId(collectId) && songService.existsBySongId(songId)){
+            songListService.deleteSongFromCollect(collectId, songId);
             message.addSuccessMsg("成功删除歌曲");
         } else {
             message.addFailMsg("歌单或歌曲不存在");

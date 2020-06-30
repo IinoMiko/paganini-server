@@ -11,7 +11,7 @@ public interface CollectRepository extends JpaRepository<Collect, Integer> {
 
     List<Collect> findAllByUserIdAndType(Integer userId, Integer type);
 
-    Long countByCollectId(Integer collectId);
+    Boolean existsByCollectId(Integer collectId);
 
     @Transactional
     void deleteByCollectId(Integer collectId);

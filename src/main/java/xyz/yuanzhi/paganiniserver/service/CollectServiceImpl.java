@@ -21,8 +21,8 @@ public class CollectServiceImpl {
         return repository.save(collect);
     }
 
-    public Long countByCollectId(Integer collectId){
-        return repository.countByCollectId(collectId);
+    public Boolean existsByCollectId(Integer collectId){
+        return repository.existsByCollectId(collectId);
     }
 
     public Collect save(Collect collect){

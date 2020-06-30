@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
-    List<Admin> findAllByNameAndPassword(String name, String password);
+    Boolean existsByNameAndPassword(String name, String password);
 
 }

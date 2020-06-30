@@ -1,10 +1,7 @@
 package xyz.yuanzhi.paganiniserver.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xyz.yuanzhi.paganiniserver.domain.Song;
 import xyz.yuanzhi.paganiniserver.service.SongServiceImpl;
 import xyz.yuanzhi.paganiniserver.util.Message;
@@ -38,6 +35,20 @@ public class SongController {
         List<Song> songs = songService.searchSongsByString(name);
         message.addSuccessMsg("搜索成功");
         message.setObject(songs);
+        return message.toJson();
+    }
+
+    @PostMapping(value = "addSong")
+    public String addSong(@RequestBody Song song){
+        Message message = new Message();
+        Song result = songService.addOrModifySong(song);
+        if (result == null){
+            message.addFailMsg("添加失败");
+            message.setObject(new Song());
+        } else {
+            message.addSuccessMsg("添加成功");
+            message.setObject(result);
+        }
         return message.toJson();
     }
 
