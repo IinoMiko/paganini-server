@@ -14,4 +14,6 @@ public interface SingerRepository extends JpaRepository<Singer, Integer> {
 
     @Transactional
     void deleteAllBySingerId(Integer singerId);
+
+    Long countAllBySex(Boolean sex);
 }

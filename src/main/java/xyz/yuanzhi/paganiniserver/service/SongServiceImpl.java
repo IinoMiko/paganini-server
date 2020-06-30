@@ -33,4 +33,8 @@ public class SongServiceImpl {
         repository.deleteAllBySongId(songId);
     }
 
+    public long countAll(){
+        return repository.count();
+    }
+
 }

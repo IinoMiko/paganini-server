@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Transactional
     void deleteAllByUserId(Integer userId);
+
+    Long countAllBySex(Boolean sex);
 }

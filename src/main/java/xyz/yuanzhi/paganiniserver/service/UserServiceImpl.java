@@ -36,4 +36,12 @@ public class UserServiceImpl {
     public void deleteAllByUserId(Integer userId){
         repository.deleteAllByUserId(userId);
     }
+
+    public long countAll(){
+        return repository.count();
+    }
+
+    public Long countBySex(Boolean sex){
+        return repository.countAllBySex(sex);
+    }
 }

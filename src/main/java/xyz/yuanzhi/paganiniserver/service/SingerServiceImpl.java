@@ -29,4 +29,12 @@ public class SingerServiceImpl {
         repository.deleteAllBySingerId(singerId);
     }
 
+    public long countAll(){
+        return repository.count();
+    }
+
+    public Long countBySex(Boolean sex){
+        return repository.countAllBySex(sex);
+    }
+
 }
