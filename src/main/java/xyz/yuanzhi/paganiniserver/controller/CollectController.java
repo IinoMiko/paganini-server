@@ -10,6 +10,7 @@ import xyz.yuanzhi.paganiniserver.service.SongListServiceImpl;
 import xyz.yuanzhi.paganiniserver.service.SongServiceImpl;
 import xyz.yuanzhi.paganiniserver.util.Message;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -110,6 +111,15 @@ public class CollectController {
         Message message = new Message();
         message.addSuccessMsg("获取成功");
         message.setObject(songs);
+        return message.toJson();
+    }
+
+    @GetMapping(value = "style={style}")
+    public String getCollectsByStyle(@PathVariable String style){
+        List<Collect> collects = collectService.getAllByStyle(style);
+        Message message = new Message();
+        message.addSuccessMsg("获取成功");
+        message.setObject(collects);
         return message.toJson();
     }
 

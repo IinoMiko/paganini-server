@@ -40,4 +40,8 @@ public class CollectServiceImpl {
     public List<Collect> searchCollectsByString(String keyword){
         return repository.getAllByNameLike(keyword);
     }
+
+    public List<Collect> getAllByStyle(String style){
+        return repository.getAllByStyle(style);
+    }
 }

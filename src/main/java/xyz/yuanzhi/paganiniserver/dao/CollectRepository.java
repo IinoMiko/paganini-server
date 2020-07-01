@@ -20,4 +20,6 @@ public interface CollectRepository extends JpaRepository<Collect, Integer> {
     List<Collect> getAllSystemList();
 
     List<Collect> getAllByNameLike(String name);
+
+    List<Collect> getAllByStyle(String style);
 }
