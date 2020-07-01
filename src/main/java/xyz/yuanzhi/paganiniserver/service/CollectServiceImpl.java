@@ -36,4 +36,8 @@ public class CollectServiceImpl {
     public List<Collect> getAllSystemList(){
         return repository.getAllSystemList();
     }
+
+    public List<Collect> searchCollectsByString(String keyword){
+        return repository.getAllByNameLike(keyword);
+    }
 }

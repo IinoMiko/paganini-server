@@ -18,4 +18,6 @@ public interface CollectRepository extends JpaRepository<Collect, Integer> {
 
     @Query("from Collect collect where collect.type=0")
     List<Collect> getAllSystemList();
+
+    List<Collect> getAllByNameLike(String name);
 }

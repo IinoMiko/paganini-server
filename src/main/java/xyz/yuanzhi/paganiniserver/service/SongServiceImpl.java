@@ -37,4 +37,8 @@ public class SongServiceImpl {
         return repository.count();
     }
 
+    public List<Song> findAllBySingerId(Integer singerId){
+        return repository.findAllBySingerId(singerId);
+    }
+
 }

@@ -2,6 +2,7 @@ package xyz.yuanzhi.paganiniserver.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xyz.yuanzhi.paganiniserver.domain.Singer;
 import xyz.yuanzhi.paganiniserver.domain.Song;
 import xyz.yuanzhi.paganiniserver.service.SongServiceImpl;
 import xyz.yuanzhi.paganiniserver.util.Message;
@@ -65,6 +66,14 @@ public class SongController {
         Message message = new Message();
         songService.deleteAllBySongId(songId);
         message.addSuccessMsg("删除成功");
+        return message.toJson();
+    }
+
+    @GetMapping(value = "singerId={singerId}")
+    public String getSongsBySingerId(@PathVariable Integer singerId){
+        Message message = new Message();
+        message.addSuccessMsg("获取成功");
+        message.setObject(songService.findAllBySingerId(singerId));
         return message.toJson();
     }
 

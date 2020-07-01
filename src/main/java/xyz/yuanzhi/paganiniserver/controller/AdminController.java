@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import xyz.yuanzhi.paganiniserver.domain.Admin;
 import xyz.yuanzhi.paganiniserver.service.AdminServiceImpl;
-import xyz.yuanzhi.paganiniserver.util.JacksonUtil;
 import xyz.yuanzhi.paganiniserver.util.Message;
 
 @RestController
