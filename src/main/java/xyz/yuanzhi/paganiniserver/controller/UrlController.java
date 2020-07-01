@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UrlController {
 
-    //request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-    //                    +
-
     @GetMapping(value = "/file_url={url}")
     public String getUrl(@PathVariable String url){
         return "http://localhost:8080" + url;
