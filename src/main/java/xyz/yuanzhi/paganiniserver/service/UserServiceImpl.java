@@ -44,4 +44,8 @@ public class UserServiceImpl {
     public Long countBySex(Boolean sex){
         return repository.countAllBySex(sex);
     }
+
+    public List<User> getAllUsers(){
+        return repository.findAll();
+    }
 }

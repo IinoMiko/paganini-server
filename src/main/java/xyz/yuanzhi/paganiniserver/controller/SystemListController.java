@@ -1,5 +1,7 @@
 package xyz.yuanzhi.paganiniserver.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +21,14 @@ public class SystemListController {
     @Autowired
     private CollectServiceImpl collectService;
 
+    @SneakyThrows
     @GetMapping(value = "getAll")
-    public String getAllSystemList(){
+    public Object getAllSystemList(){
+        ObjectMapper mapper = new ObjectMapper();
         Message message = new Message();
         message.setObject(collectService.getAllSystemList());
         message.addSuccessMsg("获取系统歌单成功");
-        return message.toJson();
+        return mapper.readTree(message.toJson());
     }
 
     @GetMapping(value = "/name={keyword}")

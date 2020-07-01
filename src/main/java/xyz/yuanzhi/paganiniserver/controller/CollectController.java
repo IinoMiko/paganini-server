@@ -37,7 +37,6 @@ public class CollectController {
         return message.toJson();
     }
 
-
     @PostMapping(value = "addCollect")
     public String addUserCollect(@RequestBody Collect collect){
         collect.setType(Collect.USER_LIST); //设置为用户歌单
@@ -105,6 +104,7 @@ public class CollectController {
     public String getAllSongs(@PathVariable Integer collectId){
         List<Integer> songIds = songListService.getAllByCollectId(collectId);
         List<Song> songs = new ArrayList<>();
+        System.out.println(songIds);
         for (Integer songId : songIds) {
             songs.add(songService.getSongById(songId));
         }

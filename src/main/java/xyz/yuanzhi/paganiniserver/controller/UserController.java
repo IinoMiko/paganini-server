@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.yuanzhi.paganiniserver.domain.User;
 import xyz.yuanzhi.paganiniserver.service.UserServiceImpl;
+import xyz.yuanzhi.paganiniserver.util.JacksonUtil;
 import xyz.yuanzhi.paganiniserver.util.Message;
 
 @RestController
@@ -57,6 +58,13 @@ public class UserController {
         return message.toJson();
     }
 
+    @GetMapping(value = "/user/id={id}")
+    public String getManageUser(@PathVariable Integer id){
+        Message message = new Message();
+        User user = userService.getUser(id);
+        return JacksonUtil.Bean2Json(user);
+    }
+
     @PutMapping(value = "modify")
     public String modifyUser(@RequestBody User user){
         userService.addUser(user); //这里其实都是调用save()方法，只要保证主键相等就能覆盖
@@ -71,5 +79,10 @@ public class UserController {
         Message message = new Message();
         message.addSuccessMsg("删除成功");
         return message.toJson();
+    }
+
+    @GetMapping(value = "all")
+    public String getAllUser(){
+        return JacksonUtil.Bean2Json(userService.getAllUsers());
     }
 }

@@ -1,12 +1,14 @@
 package xyz.yuanzhi.paganiniserver.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @Table(name = "song_list")
+@NoArgsConstructor
 public class SongList {
 
     @Id
