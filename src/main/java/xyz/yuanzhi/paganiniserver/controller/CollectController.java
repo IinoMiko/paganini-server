@@ -100,7 +100,7 @@ public class CollectController {
         return message.toJson();
     }
 
-    @GetMapping(value = "getSongs/collectId={collectId}")
+    @GetMapping(value = "collectId={collectId}")
     public String getAllSongs(@PathVariable Integer collectId){
         List<Integer> songIds = songListService.getAllByCollectId(collectId);
         List<Song> songs = new ArrayList<>();
