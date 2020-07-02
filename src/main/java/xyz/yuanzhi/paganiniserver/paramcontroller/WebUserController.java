@@ -10,7 +10,7 @@ import xyz.yuanzhi.paganiniserver.util.MyJson;
 
 @RestController
 @RequestMapping(value = "/web/user/")
-public class UserController {
+public class WebUserController {
 
     @Autowired
     private UserServiceImpl userService;

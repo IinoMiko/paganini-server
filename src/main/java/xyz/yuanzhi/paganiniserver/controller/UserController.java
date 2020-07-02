@@ -84,7 +84,7 @@ public class UserController {
     }
 
     @GetMapping(value = "all")
-    public String getAllUser(){
-        return JacksonUtil.Bean2Json(userService.getAllUsers());
+    public Object getAllUser(){
+        return userService.getAllUsers();
     }
 }
