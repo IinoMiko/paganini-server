@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "collect")
-public class Collect {
+public class Collect implements Serializable {
 
     public static final Integer SYSTEM_LIST = 0; //系统歌单
     public static final Integer USER_LIST = 1; //用户歌单
@@ -38,9 +39,5 @@ public class Collect {
     private String style;
 
     private String introduction;
-
-    @Transient
-    @JsonIgnore
-    private List<Song> songs;
 
 }

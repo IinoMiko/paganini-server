@@ -5,12 +5,13 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "singer")
-public class Singer {
+public class Singer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

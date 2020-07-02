@@ -5,11 +5,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "my_rank")
-public class MyRank {
+public class MyRank implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,4 +1,4 @@
-package xyz.yuanzhi.paganiniserver.controller;
+package xyz.yuanzhi.paganiniserver.paramcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -6,36 +6,34 @@ import xyz.yuanzhi.paganiniserver.domain.User;
 import xyz.yuanzhi.paganiniserver.service.UserServiceImpl;
 import xyz.yuanzhi.paganiniserver.util.JacksonUtil;
 import xyz.yuanzhi.paganiniserver.util.Message;
-
-import java.util.Date;
+import xyz.yuanzhi.paganiniserver.util.MyJson;
 
 @RestController
-@RequestMapping(value = "/user/")
+@RequestMapping(value = "/web/user/")
 public class UserController {
 
     @Autowired
     private UserServiceImpl userService;
 
     @PostMapping(value = "login")
-    public String login(@RequestBody User user){
-        Message message = new Message();
+    public Object login(@RequestParam User user){
+        MyJson message = new MyJson();
         String name = user.getName();
         String password = user.getPassword();
         User foundUser = userService.getUser(name, password);
         if(foundUser == null){
             message.addFailMsg("用户名或密码错误");
-            message.setObject(new User());
         } else {
             message.addSuccessMsg("登录成功");
             message.setObject(foundUser);
         }
-        return message.toJson();
+        return message.getJsonObject();
     }
 
     @PostMapping(value = "register")
-    public String register(@RequestBody User user){
+    public Object register(@RequestBody User user){
         String name = user.getName();
-        Message message = new Message();
+        MyJson message = new MyJson();
 
         if (!userService.searchUser(name)){
             message.setObject(userService.addUser(user));
@@ -43,7 +41,7 @@ public class UserController {
         } else {
             message.addFailMsg("已存在该用户");
         }
-        return message.toJson();
+        return message.getJsonObject();
     }
 
     @GetMapping(value = "/user/userId={userId}")
